@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    tools:context=".MainActivity">
+
+    <!-- Expression Display -->
+    <TextView
+        android:id="@+id/expressionDisplay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="48dp"
+        android:fontFamily="sans-serif-light"
+        android:text=""
+        android:textAlignment="textEnd"
+        android:textColor="#9E9E9E"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Result Display -->
+    <TextView
+        android:id="@+id/calculatorDisplay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="0"
+        android:textAlignment="textEnd"
+        android:textColor="#FFFFFF"
+        android:textSize="64sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/expressionDisplay" />
+
+    <!-- Speech Recognition Display -->
+    <TextView
+        android:id="@+id/speechOutput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Listening..."
+        android:textAlignment="textStart"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calculatorDisplay" />
+    <!-- Calculator Buttons -->
+    <GridLayout
+        android:id="@+id/calculatorButtons"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:columnCount="4"
+        android:padding="12dp"
+        android:rowCount="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calculatorDisplay">
+
+        <!-- Row 1 -->
+        <Button
+            android:id="@+id/buttonClear"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/circular_button_function"
+            android:fontFamily="sans-serif-medium"
+            android:text="AC"
+            android:textColor="#E44A4A"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/buttonBackspace"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/circular_button_function"
+            android:fontFamily="sans-serif-medium"
+            android:text="⌫"
+            android:textColor="#FF5252"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/button0"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/circular_button_number"
+            android:fontFamily="sans-serif-medium"
+            android:text="0"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp" />
+
+        <Button
+            android:id="@+id/buttonDiv"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/circular_button_operator"
+            android:fontFamily="sans-serif-medium"
+            android:text="÷"
+            android:textColor="#64B5F6"
+            android:textSize="32sp" />
+
+        <!-- Row 2 -->
+        <Button
+            android:id="@+id/button7"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/circular_button_number"
+            android:fontFamily="sans-serif-medium"
+            android:text="7"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp" />
+
+        <Button
+            android:id="@+id/button8"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/circular_button_number"
+            android:fontFamily="sans-serif-medium"
+            android:text="8"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp" />
+
+        <Button
+            android:id="@+id/button9"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/circular_button_number"
+            android:fontFamily="sans-serif-medium"
+            android:text="9"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp" />
+
+        <Button
+            android:id="@+id/buttonMul"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/circular_button_operator"
+            android:fontFamily="sans-serif-medium"
+            android:text="×"
+            android:textColor="#64B5F6"
+            android:textSize="32sp" />
+
+        <!-- Row 3 -->
+        <Button
+            android:id="@+id/button4"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/circular_button_number"
+            android:fontFamily="sans-serif-medium"
+            android:text="4"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp" />
+
+        <Button
+            android:id="@+id/button5"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/circular_button_number"
+            android:fontFamily="sans-serif-medium"
+            android:text="5"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp" />
+
+        <Button
+            android:id="@+id/button6"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/circular_button_number"
+            android:fontFamily="sans-serif-medium"
+            android:text="6"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp" />
+
+        <Button
+            android:id="@+id/buttonSub"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/circular_button_operator"
+            android:fontFamily="sans-serif-medium"
+            android:text="-"
+            android:textColor="#64B5F6"
+            android:textSize="32sp" />
+
+        <!-- Row 4 -->
+        <Button
+            android:id="@+id/button1"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/circular_button_number"
+            android:fontFamily="sans-serif-medium"
+            android:text="1"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp" />
+
+        <Button
+            android:id="@+id/button2"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/circular_button_number"
+            android:fontFamily="sans-serif-medium"
+            android:text="2"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp" />
+
+        <Button
+            android:id="@+id/button3"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/circular_button_number"
+            android:fontFamily="sans-serif-medium"
+            android:text="3"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp" />
+
+        <Button
+            android:id="@+id/buttonAdd"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/circular_button_operator"
+            android:fontFamily="sans-serif-medium"
+            android:text="+"
+            android:textColor="#64B5F6"
+            android:textSize="32sp" />
+
+        <!-- Row 5 (Equals button) -->
+        <Button
+            android:id="@+id/buttonEquals"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnSpan="4"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/circular_button_equals"
+            android:fontFamily="sans-serif-medium"
+            android:text="="
+            android:textColor="#FFFFFF"
+            android:textSize="32sp" />
+
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background circle -->
+    <item>
+        <shape
+            android:shape="oval">
+            <solid android:color="#CCCCCC" /> <!-- Background color (light gray) -->
+        </shape>
+    </item>
+
+    <!-- Play icon in the center -->
+    <item android:right="8dp" android:left="8dp" android:top="8dp" android:bottom="8dp">
+        <bitmap
+            android:src="@drawable/ic_play"
+        android:gravity="center" />
+    </item>
+</layer-list>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
+    android:padding="16dp"
+    tools:context=".WomenSafetyActivity">
+
+    <!-- Title -->
+
+    <!-- Settings Button -->
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="330dp"
+        android:layout_height="106dp"
+        android:layout_marginTop="44dp"
+        android:fontFamily="serif-monospace"
+        android:shadowColor="#80000000"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="6"
+        android:text="Women Safety Tools"
+        android:textAllCaps="true"
+        android:textColor="#F4EFEF"
+        android:textSize="36dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/settingsButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="8dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Settings"
+        android:src="@drawable/ic_settings"
+        app:tint="#FFFFFF"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- SOS Button -->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/sosButton"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#563097"
+        android:elevation="12dp"
+        android:text="SOS"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:cornerRadius="12dp"
+        app:icon="@drawable/ic_sos"
+        app:iconPadding="12dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintWidth_percent="0.9" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/locationShareButton"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:backgroundTint="#9A79E2"
+        android:elevation="12dp"
+        android:fontFamily="serif"
+        android:text="Share Location"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:icon="@drawable/ic_location"
+        app:iconPadding="12dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sosButton"
+        app:layout_constraintWidth_percent="0.9"
+        app:cornerRadius="12dp" />  <!-- Rounded corners -->
+
+    <!-- Send Message Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/messageButton"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:backgroundTint="#B38FE7"
+        android:elevation="12dp"
+        android:text="Send Message"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:icon="@drawable/ic_message"
+        app:iconPadding="12dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/locationShareButton"
+        app:layout_constraintWidth_percent="0.9"
+        app:cornerRadius="12dp" />  <!-- Rounded corners -->
+
+    <!-- Quick Dial Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/dialButton"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#CAB5ED"
+        android:elevation="12dp"
+        android:text="Quick Dial"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:icon="@drawable/ic_phone"
+        app:iconPadding="12dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/messageButton"
+        app:layout_constraintWidth_percent="0.9"
+        app:cornerRadius="12dp" />  <!-- Rounded corners -->
+
+    <!-- Floating Action Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/videoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:contentDescription="Learn Self Defense"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="#4C0BC1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialButton"
+        app:layout_constraintVertical_bias="0.616"
+        app:tint="#FFFFFF" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

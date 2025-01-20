@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="ExtraText">
+    android:background="@drawable/background_gradient"  <!-- Gradient background -->
+    android:padding="16dp">
+
+    <!-- RecyclerView to display list of videos -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/videoRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="4dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        android:background="@drawable/recycler_view_background"/>
+</LinearLayout>
+

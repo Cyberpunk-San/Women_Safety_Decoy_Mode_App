@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "989225789640",
+    "project_id": "fir-36467",
+    "storage_bucket": "fir-36467.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989225789640:android:67c851a229ca5cb4d09dfd",
+        "android_client_info": {
+          "package_name": "com.sansriti.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDx2g0aYE9vzRSYb1YBBs5_rRwGd7WfSrA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
