@@ -25,9 +25,10 @@ Women often face safety concerns in various environments, and there is a need fo
    - Add, view, or delete trusted colleagues using Firebase SDK.
 
 ## Tech Stack
-1. **Frontend:** Flutter/React Native for mobile app development.
-2. **Backend:** Firebase SDK for database management and authentication.
-3. **APIs:** Google Maps API for location sharing.
+1. **Backend:** Firebase SDK for database management and authentication.
+2. **APIs:**
+   - Google Maps API (for location sharing)
+   - Google Speech-To-Text API(for Speech recognition)
 4. **Emergency Dialing:** Integrated with native phone services.
 5. **Multimedia:** Embedded self-defense video resources.
 
