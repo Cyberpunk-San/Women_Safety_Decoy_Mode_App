@@ -7,7 +7,9 @@ import android.database.Cursor;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
+import android.provider.ContactsContract;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +29,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashSet;
 
 public class LocationShareActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -127,71 +136,78 @@ public class LocationShareActivity extends AppCompatActivity implements OnMapRea
             locationText.setText(String.format("Latitude: %.6f\nLongitude: %.6f", location.getLatitude(), location.getLongitude()));
         }
     }
-
     private void sendLocationAsMessage() {
         if (checkPermissions()) {
             fusedLocationProviderClient.getLastLocation()
                     .addOnSuccessListener(this, location -> {
                         if (location != null) {
                             updateLocationOnMap(location);
-                            // Create a Google Maps link using latitude and longitude
+
+                            // Generate Google Maps link
                             String mapsUrl = String.format("https://www.google.com/maps?q=%.6f,%.6f",
                                     location.getLatitude(), location.getLongitude());
 
-                            // Format the message to include the location link
-                            String message = String.format(
-                                    "I am here! Check my location: %s",
-                                    mapsUrl
-                            );
+                            // Format the message
+                            String message = String.format("I am here! Check my location: %s", mapsUrl);
 
-                            sendLocationToAllContacts(message); // Send the message to all contacts
+                            // Send location to colleagues
+                            sendLocationToColleagues(message);
                         } else {
-                            Toast.makeText(this, "Unable to get location.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Unable to retrieve location.", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(this, e -> {
-                        Toast.makeText(this, "Failed to get location: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Failed to fetch location: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
         } else {
-            Toast.makeText(this, "Permissions not granted.", Toast.LENGTH_SHORT).show();
+            requestPermissions();
         }
     }
 
-    private void sendLocationToAllContacts(String message) {
-        ContentResolver resolver = getContentResolver();
-        Cursor cursor = resolver.query(android.provider.ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                new String[]{android.provider.ContactsContract.CommonDataKinds.Phone.NUMBER},
-                null, null, null);
+    private void sendLocationToColleagues(String message) {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("colleagues");
 
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                int phoneNumberIndex = cursor.getColumnIndex(android.provider.ContactsContract.CommonDataKinds.Phone.NUMBER);
-                if (phoneNumberIndex != -1) {  // Ensure the column index is valid
-                    String phoneNumber = cursor.getString(phoneNumberIndex);
-                    sendSMS(phoneNumber, message);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot colleagueSnapshot : dataSnapshot.getChildren()) {
+                        // Fetch the colleague's phone number directly from Firebase
+                        String contact = colleagueSnapshot.child("contact").getValue(String.class);
+
+                        // Send the location message to this contact if valid
+                        if (contact != null && !contact.isEmpty()) {
+                            sendSMS(contact, message);
+                        }
+                    }
+                    Toast.makeText(getApplicationContext(), "Location sent to colleagues.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "No colleagues found in the database.", Toast.LENGTH_SHORT).show();
                 }
-            } while (cursor.moveToNext());
-            cursor.close();
-            Toast.makeText(this, "Location sent to all contacts!", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "No contacts found", Toast.LENGTH_SHORT).show();
-        }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "Database error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void sendSMS(String phoneNumber, String message) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNumber, null, message, null, null);
-            Toast.makeText(this, "Location sent to: " + phoneNumber, Toast.LENGTH_SHORT).show();
+            Log.d("SMS", "Message sent to: " + phoneNumber);
         } else {
+            Toast.makeText(this, "SMS permission not granted.", Toast.LENGTH_SHORT).show();
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, 101);
         }
     }
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
